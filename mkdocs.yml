@@ -1,0 +1,18 @@
+site_name: Prometheus Workshop
+theme:
+  name: material
+edit_uri: https://docs.google.com/document/d/19PqIIflgEzwD5iGHp7PlwbVsCNPpW0_yd81zLF5hhSI/edit?usp=sharing
+nav:
+  - Practical info: index.md
+  - Prometheus: prometheus.md
+  - Grafana: grafana.md
+  - Metrics: metrics.md
+  - Exporters: exporters.md
+  - Alerting: alertmanager.md
+  - Custom apps: custom.md
+  - Bonus: bonus.md
+  - Config files: end.md
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
