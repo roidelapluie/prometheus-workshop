@@ -1,0 +1,643 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>Metrics - Prometheus Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#metrics-monitoring" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Prometheus Workshop" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Prometheus Workshop
+              </span>
+              <span class="md-header-nav__topic">
+                Metrics
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="/" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Prometheus Workshop" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Prometheus Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="/" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Practical info" class="md-nav__link">
+      Practical info
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../prometheus/" title="Prometheus" class="md-nav__link">
+      Prometheus
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grafana/" title="Grafana" class="md-nav__link">
+      Grafana
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Metrics
+      </label>
+    
+    <a href="./" title="Metrics" class="md-nav__link md-nav__link--active">
+      Metrics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-metrics" title="What is a metrics" class="md-nav__link">
+    What is a metrics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#labels-matching" title="Labels matching" class="md-nav__link">
+    Labels matching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" title="Functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregation" title="Aggregation" class="md-nav__link">
+    Aggregation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#over-time" title="Over Time" class="md-nav__link">
+    Over Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max-min-bottomk-topk" title="Max, Min, Bottomk, Topk" class="md-nav__link">
+    Max, Min, Bottomk, Topk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-functions" title="Time functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#andor" title="And/Or" class="md-nav__link">
+    And/Or
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../exporters/" title="Exporters" class="md-nav__link">
+      Exporters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../alertmanager/" title="Alerting" class="md-nav__link">
+      Alerting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../custom/" title="Custom apps" class="md-nav__link">
+      Custom apps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../bonus/" title="Bonus" class="md-nav__link">
+      Bonus
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../end/" title="Config files" class="md-nav__link">
+      Config files
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-metrics" title="What is a metrics" class="md-nav__link">
+    What is a metrics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#labels-matching" title="Labels matching" class="md-nav__link">
+    Labels matching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" title="Functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregation" title="Aggregation" class="md-nav__link">
+    Aggregation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#over-time" title="Over Time" class="md-nav__link">
+    Over Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max-min-bottomk-topk" title="Max, Min, Bottomk, Topk" class="md-nav__link">
+    Max, Min, Bottomk, Topk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-functions" title="Time functions" class="md-nav__link">
+    Time functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#andor" title="And/Or" class="md-nav__link">
+    And/Or
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://docs.google.com/document/d/19PqIIflgEzwD5iGHp7PlwbVsCNPpW0_yd81zLF5hhSI/edit?usp=sharing/metrics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="metrics-monitoring">Metrics Monitoring</h1>
+<p>Metrics monitoring is different because it does not assume that a situation can
+be explained in fixed states. Instead, it brings you inside your system and
+provides dizens of metrics that you can then analyze and understand.</p>
+<p>Even if you do not need all the metrics, it is better to collect them to look
+further what they look like.</p>
+<h2 id="what-is-a-metrics">What is a metrics</h2>
+<ul>
+<li>Name</li>
+<li>Timestamp</li>
+<li>Labels</li>
+<li>Value</li>
+<li>Type</li>
+</ul>
+<p><em>What are the 4 types of metrics prometheus knows?</em></p>
+<ul>
+<li>Gauge</li>
+<li>Counters</li>
+<li>Histograms</li>
+<li>Summaries</li>
+</ul>
+<p>The number of http requests is expressed in ...</p>
+<p>The duration in ...</p>
+<p>The number of active sessions is a ...</p>
+<p>What are the labels added by prometheus ?</p>
+<p>What are the labels prometheus knows but does not add?</p>
+<h2 id="labels-matching">Labels matching</h2>
+<p>For prometheus to do calculations and comparisons of metrics, labels must match
+one each side (except name)</p>
+<h2 id="functions">Functions</h2>
+<p>Some important functions:</p>
+<ul>
+<li>
+<p>Math: = - / *</p>
+</li>
+<li>
+<p>rate</p>
+</li>
+<li>sum</li>
+<li>deriv</li>
+<li>delta</li>
+<li>increase</li>
+<li>count</li>
+</ul>
+<p>In the list above, which ones should be used with counters, and which ones with
+gauges?</p>
+<p>What is the difference between irate and rate? idelta and delta?</p>
+<h2 id="aggregation">Aggregation</h2>
+<p>How can I get the sum of scraped metrics by job (2 ways)? -- exclusion and
+inclusion.</p>
+<p>How can I get the % of /federate over the other
+prometheus_http_request_duration_seconds_count ?</p>
+<details class="success"><summary>Solution</summary><div class="highlight"><pre><span></span>rate(prometheus_http_request_duration_seconds_count{handler=&quot;/federate&quot;}[5m])
+/ ignoring(handler) group_right sum without (handler)
+(rate(prometheus_http_request_duration_seconds_count[5m]))
+</pre></div>
+
+</details>
+<h2 id="over-time">Over Time</h2>
+<p>What is the difference between max and max_over_time?</p>
+<h2 id="max-min-bottomk-topk">Max, Min, Bottomk, Topk</h2>
+<p>What is the difference between max and topk?</p>
+<h2 id="time-functions">Time functions</h2>
+<p>day()
+day_of_week()</p>
+<p>How to use the optional argument of day_of_week?</p>
+<p>What is the timestamp() function? How can it be useful?</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use Grafana Explore feature to get help and autocomplete on
+Prometheus (currently still a "beta" feature).</p>
+</div>
+<h2 id="andor">And/Or</h2>
+<p>Can you think of any usecases for and/or/unless?</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../grafana/" title="Grafana" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Grafana
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../exporters/" title="Exporters" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Exporters
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.5e60981f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
