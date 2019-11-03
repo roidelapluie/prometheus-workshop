@@ -4,7 +4,7 @@ description: "Install & Setup Prometheus"
 repo: ""
 tags: []
 weight: 0
-date: 1
+date: 100
 draft: false
 ---
 
