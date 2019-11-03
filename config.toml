@@ -1,3 +1,63 @@
-baseURL = "http://example.org/"
+baseURL = "https://prometheus-workshop.roidelapluie.be/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Prometheus Workshop"
+theme = "minimal"
+disqusShortname = ""
+googleAnalytics = ""
+
+[params]
+    author = "Julien Pivotto"
+    description = "Open Source Monitoring Conference 2019 workshop"
+    githubUsername = "roidelapluie"
+    accent = "red"
+    showBorder = true
+    backgroundColor = "white"
+    font = "Raleway" # should match the name on Google Fonts!
+    highlight = true
+    highlightStyle = "default"
+    highlightLanguages = ["go", "haskell", "kotlin", "scala", "swift"]
+copyright = "This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). Sponsored by [Inuits](https://inuits.eu) & [OSMC](https://osmc.de). Powered by [Hugo](https://gohugo.io) & [Minimal](https://github.com/calintat/minimal)."
+
+[[menu.main]]
+    url = "/"
+    name = "Home"
+    weight = 1
+
+[[menu.main]]
+    url = "/about/"
+    name = "About"
+    weight = 2
+
+[[menu.main]]
+    url = "/post/"
+    name = "Posts"
+    weight = 3
+
+[[menu.main]]
+    url = "/project/"
+    name = "Projects"
+    weight = 4
+
+# Social icons to be shown on the right-hand side of the navigation bar.
+# The "name" field should match the name of the icon in Font Awesome.
+# The list of available icons can be found at http://fontawesome.io/icons.
+
+[[menu.icon]]
+    url = "mailto:roidelapluie@inuits.eu"
+    name = "envelope-o"
+    weight = 1
+
+[[menu.icon]]
+    url = "https://github.com/roidelapluie/prometheus-workshop"
+    name = "github"
+    weight = 2
+
+[[menu.icon]]
+    url = "https://twitter.com/roidelapluie/"
+    name = "twitter"
+    weight = 3
+
+[[menu.icon]]
+    url = "https://docs.google.com/document/d/1kbhhCx_TpyamZo1K3ps_QxJrhwCV3Ti3D65jOACRZJs/edit?usp=sharing"
+    name = "heart"
+    weight = 5
