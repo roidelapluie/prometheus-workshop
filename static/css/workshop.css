@@ -1,3 +1,6 @@
+.content {
+    text-align: left;
+}
 .content a:link {
     text-decoration: underline;
 }
