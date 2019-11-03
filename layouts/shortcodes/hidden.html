@@ -1,0 +1,11 @@
+<div class="bs-callout bs-callout-default" onClick="$('#{{ .Inner|md5 -}}').show();$('#help{{ .Inner|md5 -}}').hide()">
+    {{with .Get "title"|default (.Get 0)|default "Hidden"}}<h4>{{.}}</h4>{{ end }}
+ <span id="help{{ .Inner|md5 -}}">Click to reveal.</span>
+
+
+<div id="{{ md5 .Inner }}" style="display:none;">
+{{.Inner|markdownify}}
+<div style="text-align:right"><a href="javascript:$('#{{ .Inner|md5 -}}').hide();$('#help{{ .Inner|md5 -}}').show()">Hide</a>
+</div>
+</div>
+</div>

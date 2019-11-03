@@ -9,13 +9,13 @@ googleAnalytics = ""
     author = "Julien Pivotto"
     description = "Open Source Monitoring Conference 2019 workshop"
     githubUsername = "roidelapluie"
-    accent = "red"
+    accent = "#a911fc"
     showBorder = true
     backgroundColor = "white"
-    font = "Raleway" # should match the name on Google Fonts!
+    font = "Lato"
     highlight = true
-    highlightStyle = "default"
-    highlightLanguages = ["go", "haskell", "kotlin", "scala", "swift"]
+    highlightStyle = "agate"
+    highlightLanguages = ["yaml", "bash", "shell"]
 copyright = "This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). Sponsored by [Inuits](https://inuits.eu) & [OSMC](https://osmc.de). Powered by [Hugo](https://gohugo.io) & [Minimal](https://github.com/calintat/minimal)."
 
 [[menu.main]]
@@ -29,14 +29,19 @@ copyright = "This work is licensed under a [Creative Commons Attribution 4.0 Int
     weight = 2
 
 [[menu.main]]
-    url = "/post/"
-    name = "Posts"
+    url = "/info/"
+    name = "Info"
     weight = 3
 
 [[menu.main]]
-    url = "/project/"
-    name = "Projects"
+    url = "/chapter/"
+    name = "Workshop"
     weight = 4
+
+[[menu.main]]
+    url = "/2018/"
+    name = "2018"
+    weight = 5
 
 # Social icons to be shown on the right-hand side of the navigation bar.
 # The "name" field should match the name of the icon in Font Awesome.
@@ -53,11 +58,16 @@ copyright = "This work is licensed under a [Creative Commons Attribution 4.0 Int
     weight = 2
 
 [[menu.icon]]
-    url = "https://twitter.com/roidelapluie/"
+    url = "https://osmc.de/"
+    name = "heart"
+    weight = 3
+
+[[menu.icon]]
+    url = "https://twitter.com/intent/tweet?hashtags=OSMC,prometheus,workshop"
     name = "twitter"
     weight = 3
 
 [[menu.icon]]
     url = "https://docs.google.com/document/d/1kbhhCx_TpyamZo1K3ps_QxJrhwCV3Ti3D65jOACRZJs/edit?usp=sharing"
-    name = "heart"
-    weight = 5
+    name = "comment"
+    weight = 4
