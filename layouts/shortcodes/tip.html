@@ -1,4 +1,4 @@
 <div class="bs-callout bs-callout-primary">
-{{with .Get "title"|default "Tip"}}<h4>{{.}}</h4>{{ end }}
+{{with .Get "title"|default (.Get 0)|default "Tip"}}<h4>{{.}}</h4>{{ end }}
 {{.Inner|markdownify}}
 </div>

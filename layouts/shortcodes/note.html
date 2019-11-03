@@ -1,4 +1,4 @@
 <div class="bs-callout bs-callout-osmc">
-{{with .Get "title"|default "Note"}}<h4>{{.}}</h4>{{ end }}
+{{with .Get "title"|default (.Get 0)|default "Note"}}<h4>{{.}}</h4>{{ end }}
 {{.Inner|markdownify}}
 </div>
