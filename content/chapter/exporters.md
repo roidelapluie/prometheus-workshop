@@ -13,9 +13,32 @@ draft: false
 The node exporter enables basic monitoring of linux machines (and other unix
 like systems.)
 
-1. Download and run the node_exporter
-1. Enable the systemd collector (might require to run as root)
+1. Download the [node_exporter](https://prometheus.io/download/) {{% version "node_exporter" %}}.
+1. Extract it
+
+    ```shell
+    $ tar xvf Downloads/node_exporter-{{% version "node_exporter" %}}.linux-amd64.tar.gz
+    ```
+
+1. List the files
+
+    ```shell
+    $ ls node_exporter-{{% version "node_exporter" %}}.linux-amd64
+    ```
+
+1. Launch the node_exporter
+
+    ```shell
+    $ cd node_exporter-{{% version "node_exporter" %}}.linux-amd64
+    $ ./node_exporter
+    ```
+
+1. Open your browser at [http://127.0.0.1:9100](http://127.0.0.1:9100)
 1. Add your node_exporter and your neighbors to prometheus
+
+### collectors
+
+1. Enable the systemd collector
 
 ### textfile collector
 
@@ -23,7 +46,6 @@ like systems.)
 
 Move the metrics created before (company name, random number..) on port 5678 to
 be collected by the node exporter.
-
 
 Do you see use cases for this feature?
 
@@ -40,40 +62,56 @@ You can use `{job="node_exporter"}` in prometheus to see the metrics, or you
 can directly open the /metrics of the node_exporter in your browser.
 {{% /tip %}}
 
+---
 
 ## JMX exporter
 
 1. Download [Jenkins](https://jenkins.io/download/)
 1. Download the [JMX
-   exporter](https://github.com/prometheus/jmx_exporter)
+   exporter](https://github.com/prometheus/jmx_exporter) {{% version "jmx_exporter" %}}.
 1. Run Jenkins with the JMX exporter and add it to Prometheus
 
 {{% hidden "solution" %}}
-```
-java -javaagent:./jmx_prometheus_javaagent-0.3.1.jar=8081:config.yml -jar jenkins.war
+```shell
+$ java -javaagent:./jmx_prometheus_javaagent-{{% version "jmx_exporter" %}}.jar=8081:config.yml -jar jenkins.war
 ```
 {{% /hidden %}}
 
 {{% hidden "config.yml" %}}
-```
+```yaml
 ---
-startDelaySeconds: 0
+startDelaySeconds: 10
 ```
 {{% /hidden %}}
 
+*exercise*
 
-1. *exercise* Create a dashboard with:
+1. Create a dashboard with:
     - JVM version
     - Uptime
     - Threads
     - Heap Size
     - Memory Pool size
 
+---
+
 ## Grok exporter
 
-- Download [grok exporter](https://github.com/fstab/grok_exporter)
-- Create a simple job in Jenkins
-- Re run Jenkins to output to a file (add `&> jenkins.log`)
+1. Download [grok exporter](https://github.com/fstab/grok_exporter) {{% version "grok_exporter" %}}
+1. Extract it
+
+    ```shell
+    $ unzip Downloads/grok_exporter-{{% version "grok_exporter" %}}.linux-amd64.zip
+    ```
+
+1. List the files
+
+    ```shell
+    $ ls grok_exporter-{{% version "grok_exporter" %}}.linux-amd64
+    ```
+
+1. Create a simple job in Jenkins
+1. Re run Jenkins to output to a file (add `&> jenkins.log`)
 
 *exercise*
 
@@ -116,8 +154,33 @@ server:
 ```
 {{% /hidden %}}
 
+---
+
 
 ## Blackbox exporter
+
+1. Download the [blackbox_exporter](https://prometheus.io/download/) {{% version "blackbox_exporter" %}}.
+1. Extract it
+
+    ```shell
+    $ tar xvf Downloads/blackbox_exporter-{{% version "blackbox_exporter" %}}.linux-amd64.tar.gz
+    ```
+
+1. List the files
+
+    ```shell
+    $ ls blackbox_exporter-{{% version "blackbox_exporter" %}}.linux-amd64
+    ```
+
+1. Launch the blackbox_exporter
+
+    ```shell
+    $ cd blackbox_exporter-{{% version "blackbox_exporter" %}}.linux-amd64
+    $ ./blackbox_exporter
+    ```
+
+1. Open your browser at [http://127.0.0.1:9115](http://127.0.0.1:9115)
+1. Add your blackbox_exporter and your neighbors to prometheus
 
 *Exercise*
 
@@ -125,3 +188,4 @@ server:
 - Check with prometheus blackbox exporter when the SSL certificate will expire
   in days
 - Create a dashboard with the detailed time it takes to get the OSMC website.
+

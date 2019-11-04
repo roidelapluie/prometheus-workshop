@@ -8,11 +8,11 @@ date: 90
 draft: false
 ---
 
-## In Prometheus
+## Recording rules and alerts
 
 {{% note %}}
-Prometheus is using Go Templating System for alerting, in both Prometheus
-and Alertmanager
+Prometheus is using the [Go Templating System](https://prometheus.io/docs/prometheus/latest/configuration/template_examples/)
+for alerting, in both Prometheus and Alertmanager.
 {{% /note %}}
 
 Prometheus splits the alerting role in 3 components:
@@ -22,21 +22,24 @@ Prometheus splits the alerting role in 3 components:
 - webhook receivers that will handle the alerts
 
 
+{{% note %}}
+Alerts and recording rules are close to each other. They are queries that are
+run at regular interval by prometheus and write new metrics into the tsdb.
+{{% /note %}}
+
 *Exercise*
 
 Create, in Prometheus, an alert when a target is down.
 
 *Exercise*
 
-Create, in Prometheus, an alert when a grafana server is down, with a label:
+Create, in Prometheus, an alert when a grafana server is down, with an extra label:
 priority=high.
 
 *Exercise*
 
-Create a recording rule to get the % of disk space used
+Create a **recording rule** to get the % of disk space used
 and alert on > 50% of disk space used.
-
-
 
 
 What is the difference between recording and alerting?
@@ -57,10 +60,29 @@ Prometheus generates an ALERTS metric with the active/pending alerts.
 
 ## Alertmanager
 
-1. Download and run Alertmanager
+1. Download the [alertmanager](https://prometheus.io/download/) {{% version "alertmanager" %}}.
+1. Extract it
+
+    ```shell
+    $ tar xvf Downloads/alertmanager-{{% version "alertmanager" %}}.linux-amd64.tar.gz
+    ```
+
+1. List the files
+
+    ```shell
+    $ ls alertmanager-{{% version "alertmanager" %}}.linux-amd64
+    ```
+
+1. Launch the alertmanager
+
+    ```shell
+    $ cd alertmanager-{{% version "alertmanager" %}}.linux-amd64
+    $ ./alertmanager
+    ```
+1. Open your browser at [http://127.0.0.1:9093](http://127.0.0.1:9093)
+1. Add your alertmanager and your neighbors to prometheus
 1. Connect Prometheus and Alertmanager together
 1. Look for the alerts coming.
-
 
 - What are the 4 roles of alertmanager?
 - What are the different timers in alertmanager?
@@ -100,6 +122,12 @@ Make a big cluster of alert managers
 Amtool is the CLI tool for alertmanager
 
 You can use it to e.g. create silences.
+
+```shell
+$ ./amtool silence --alertmanager.url=http://127.0.0.1:9093 add job=grafana priority=high -d 15m -c "we redeploy grafana" -a Julien
+```
+
+That will return the UID of the silence that you can use to expire it.
 
 ### Karma
 
