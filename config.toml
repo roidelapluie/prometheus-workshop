@@ -7,9 +7,9 @@ googleAnalytics = ""
 
 [params]
     author = "Julien Pivotto"
-    description = "Open Source Monitoring Conference 2019 workshop"
+    description = "Inuits 2020"
     githubUsername = "roidelapluie"
-    accent = "#a911fc"
+    accent = "#00a7c9"
     showBorder = true
     backgroundColor = "white"
     font = "Lato"
