@@ -153,6 +153,8 @@ $ killall -HUP prometheus
 
 ## Federation
 
+### File_sd
+
 Now, let's move to file_sd.
 
 Create a file:
@@ -223,6 +225,74 @@ The name of a metric is a label too! It is the `__name__` label.
 
 {{% /hidden %}}
 
+### DigitalOcean SD
+
+Now, let's move to digitalocean_sd.
+
+In your VM, there is a /etc/do_read file with a digitalocean token.
+
+The version of Prometheus you have has native integration with DigitalOcean.
+
+Adapt Prometheus configuration:
+
+```yaml
+  - job_name: 'prometheus'
+    digitalocean_sd_configs:
+      - bearer_token_file: /etc/do_read
+        port: 9090
+```
+
+Reload Prometheus:
+
+```shell
+killall -HUP prometheus
+```
+
+You should see the 10 prometheus servers.
+
+Duplicate the job, but with the following instructions:
+
+- The new job should be called "federation"
+- The new job should query http://127.0.0.1:9090/federate?match[]=up
+- The "up" metric fetched should be renamed to external_up
+
+{{% tip %}}
+The name of a metric is a label too! It is the `__name__` label.
+{{% /tip %}}
+
+{{% hidden "Solution" %}}
+
+```yaml
+- job_name: 'prometheus'
+  digitalocean_sd_configs:
+    - bearer_token_file: /etc/do_read
+  relabel_configs:
+  - source_labels: [__meta_digitalocean_droplet_name]
+    target_label: instance
+  - source_labels: [__meta_digitalocean_public_ipv4]
+    target_label: __address__
+    replacement: '$1:9090'
+- job_name: 'federation'
+  metrics_path: '/federate'
+  digitalocean_sd_configs:
+    - bearer_token_file: /etc/do_read
+  params:
+    'match[]':
+      - up
+  relabel_configs:
+  - source_labels: [__meta_digitalocean_droplet_name]
+    target_label: instance
+  - source_labels: [__meta_digitalocean_public_ipv4]
+    target_label: __address__
+    replacement: '$1:9090'
+  metric_relabel_configs:
+    - source_labels: [__name__]
+      target_label: __name__
+      regex: up
+      replacement: federate_up
+```
+
+{{% /hidden %}}
 
 ## Last exercise
 
