@@ -296,7 +296,7 @@ The name of a metric is a label too! It is the `__name__` label.
 
 ## Last exercise
 
-Prometheus fetches Metrics as HTML.
+Prometheus fetches Metrics over HTTP.
 
 Metrics have a name and labels.
 
