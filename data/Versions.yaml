@@ -1,4 +1,4 @@
-Prometheus: 2.20.0
+Prometheus: 2.20.1
 Grafana: 7.0.6
 Node_exporter: 1.0.1
 Blackbox_exporter: 0.17.0
