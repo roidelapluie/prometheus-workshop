@@ -255,6 +255,10 @@ Adapt Prometheus configuration:
     digitalocean_sd_configs:
       - bearer_token_file: /etc/do_read
         port: 9090
+    relabel_configs:
+      - source_labels: [__meta_digitalocean_tags]
+        regex: '.*,prometheus_workshop,.*'
+        action: keep
 ```
 
 Reload Prometheus:
@@ -282,6 +286,9 @@ The name of a metric is a label too! It is the `__name__` label.
   digitalocean_sd_configs:
     - bearer_token_file: /etc/do_read
   relabel_configs:
+  - source_labels: [__meta_digitalocean_tags]
+    regex: '.*,prometheus_workshop,.*'
+    action: keep
   - source_labels: [__meta_digitalocean_droplet_name]
     target_label: instance
   - source_labels: [__meta_digitalocean_public_ipv4]
@@ -295,6 +302,9 @@ The name of a metric is a label too! It is the `__name__` label.
     'match[]':
       - up
   relabel_configs:
+  - source_labels: [__meta_digitalocean_tags]
+    regex: '.*,prometheus_workshop,.*'
+    action: keep
   - source_labels: [__meta_digitalocean_droplet_name]
     target_label: instance
   - source_labels: [__meta_digitalocean_public_ipv4]
