@@ -24,8 +24,10 @@ Prometheus splits the alerting role in 3 components:
 
 {{% note %}}
 Alerts and recording rules are close to each other. They are queries that are
-run at regular interval by prometheus and write new metrics into the tsdb.
+run at regular interval by prometheus. They both write new metrics into tsdb.
 {{% /note %}}
+
+
 
 *Exercise*
 

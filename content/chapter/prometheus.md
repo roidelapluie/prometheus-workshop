@@ -16,6 +16,17 @@ The [prometheus documentation](https://prometheus.io/docs/introduction/overview/
 ![Prometheus Architecture, CC-BY-SA 4.0, from the Prometheus Authors 2014-2019](https://prometheus.io/assets/architecture.png)
 
 
+## How Prometheus works
+
+Prometheus monitoring is based on metrics, exposed on HTTP endpoints. The
+Prometheus server is "active" and starts the polling. That polling (called
+"scraping") happens at a high interval (usually 15s or 30s).
+
+Each monitored target must expose a metrics endpoint. That endpoint exposes
+metrics in the Prometheus HTTP format or in the OpenMetrics format.
+
+Once collected, those metrics are mutated by Prometheus, which adds an instance
+and job label. Optionally, extra relabeling configured by the user occurs.
 
 ## The Prometheus server
 
@@ -45,10 +56,8 @@ The [prometheus documentation](https://prometheus.io/docs/introduction/overview/
 
 {{% note title="tsdb" %}}
 Prometheus stores its data in a database called
-[tsdb](https://github.com/prometheus/prometheus/tree/master/tsdb). While it used
-to be in its own repository, the project was
-[merged](https://github.com/prometheus/prometheus/pull/5805) in the prometheus
-codebase in August 2019.
+[tsdb](https://github.com/prometheus/prometheus/tree/master/tsdb). The TSDB is
+self-maintained by the server, which manages the data lifecycle.
 {{% /note %}}
 
 
@@ -64,6 +73,12 @@ Try to find:
 - The duration of data retention
 - The "targets" that are scraped by default
 - The "scrape" interval
+
+{{% note title="React UI" %}}
+The Prometheus UI went under a huge refactoring in 2020. It is now react-based,
+with powerful autocomplete features. There is still a link to access the
+"classic" UI.
+{{% /note %}}
 
 ---
 
@@ -90,21 +105,14 @@ The `up` metric is added by prometheus on each scrape. Its value is 1 if the
 scrape has succeeded, 0 otherwise.
 {{% /info %}}
 
----
-
-## tsdb
-
-tsdb is an utility provided to debug the prometheus backend, tsdb. This is
-mainly useful for prometheus developers, and is therefore out of scope for this
-workshop.
+- Create blocks from OpenMetrics files or recording rules, aka backfill.
 
 ---
-
 
 ## Adding targets
 
 {{% note %}}
-At this point, make sure you understand the basis of YAML
+At this point, make sure you understand the basis of [YAML](https://yaml.org).
 {{% /note %}}
 
 *exercise*
@@ -141,7 +149,14 @@ $ killall -HUP prometheus
     $ curl -XPOST http://localhost:9090/api/v1/admin/tsdb/snapshot
     ```
 
-    Look in the data directory
+    Look in the data directory.
+
+
+    {{% note %}}
+    This is snapshotting the TSDB. There is another kind of snapshot, Memory
+    Snapshot on Shutdown, which is a different feature.
+    {{% /note %}}
+
 
 1. Delete a timeserie
 

@@ -8,10 +8,18 @@ date: 97
 draft: false
 ---
 
+
+Exporters are HTTP servers that expose metrics. They can translate Prometheus
+queries into domain-specific queries. They then turn the results into Prometheus
+metrics.
+
+There are hundreds of known exporters, most of them coming from the community. A
+few exporters are maintained by the Prometheus team.
+
 ## node_exporter
 
 The node exporter enables basic monitoring of linux machines (and other unix
-like systems.)
+like systems).
 
 1. Download the [node_exporter](https://prometheus.io/download/) {{% version "node_exporter" %}}.
 1. Extract it
@@ -34,9 +42,13 @@ like systems.)
     ```
 
 1. Open your browser at [http://127.0.0.1:9100](http://127.0.0.1:9100)
-1. Add your node_exporter and your neighbors to prometheus
+1. Add your node_exporter and your neighbors to prometheus.
 
 ### collectors
+
+The Node Exporter has multiple collectors, some of them disabled by default.
+
+*Exercise*
 
 1. Enable the systemd collector
 
@@ -65,6 +77,10 @@ can directly open the /metrics of the node_exporter in your browser.
 ---
 
 ## JMX exporter
+
+
+The JMX exporter is useful to monitor Java applications. It can be loaded as a
+"side car" (Java agent), in the same JVM's as the applications.
 
 1. Download [Jenkins](https://jenkins.io/download/)
 1. Download the [JMX
@@ -184,7 +200,7 @@ server:
 
 *Exercise*
 
-- Monitor the OSMC website (DNS + HTTP) using the blackbox exporter
+- Monitor the Inuits website (DNS + HTTP) using the blackbox exporter
 - Check with prometheus blackbox exporter when the SSL certificate will expire
   in days
 - Create a dashboard with the detailed time it takes to get the OSMC website.
